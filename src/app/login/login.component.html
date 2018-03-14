@@ -1,25 +1,29 @@
 <div class="container">
-  <div class="row align-items-start">
-    <div class="col-3"></div>
-    <div class="col-6">
 
-        <div class="card mt-5">
+
+  <div class="row align-items-center">
+    <div class="col-4">
+      <h1 class="h1-custom mb-4">Login</h1>
+      <span class="align-bottom" style="color:#8499B1">
+        Not a member?
+        <a routerLink="/register" class="btn btn-outline-primary signup ml-2" role="button">Sign Up</a>
+      </span>
+    </div>
+
+    <div class="col-8">
+        <div class="card mt-5 form-custom">
           <div class="card-body">
-            <h1 class="card-title">Login</h1>
             <div class="card-text form-group">
-
               <!-- email input -->
-              <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+              <input type="email" class="form-control form-custom" [(ngModel)]="user.email" id="email" placeholder="Email">
               <!-- password input -->
-              <input type="password" class="form-control mt-3" name="password" id="password" placeholder="Password">
+              <input type="password" class="form-control mt-3 form-custom" [(ngModel)]="user.password" id="password" placeholder="Password">
               <!-- submit form -->
-              <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Submit</button>
-
+              <button type="submit" class="btn btn-lg btn-block mt-3 btn-custom">Submit</button>
             </div>
           </div>
         </div>
 
     </div>
-    <div class="col-3"></div>
   </div>
 </div>

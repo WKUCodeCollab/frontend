@@ -1,0 +1,32 @@
+<div class="container">
+
+
+    <div class="row align-items-center">
+      <div class="col-4">
+        <h1 class="h1-custom mb-4">Register</h1>
+        <span class="align-bottom" style="color:#8499B1">
+          Already a member?
+          <a routerLink="/login" class="btn btn-outline-primary signup ml-2" role="button">Login</a>
+        </span>
+      </div>
+  
+      <div class="col-8">
+          <div class="card mt-5 form-custom">
+            <div class="card-body">
+              <div class="card-text form-group">
+                <!-- name inputs -->
+                <input class="form-control form-custom" [(ngModel)]="user.fName" id = "firstName" placeHolder="First Name">
+                <input class="form-control form-custom mt-3" [(ngModel)]="user.lName" id = "lastName" placeHolder="Last Name">
+                <!-- email input -->
+                <input type="email" class="form-control form-custom mt-3" [(ngModel)]="user.email" id="email" placeholder="Email">
+                <!-- password input -->
+                <input type="password" class="form-control mt-3 form-custom" [(ngModel)]="user.password" id="password" placeholder="Password">
+                <!-- submit form -->
+                <button type="submit" class="btn btn-lg btn-block mt-3 btn-custom">Submit</button>
+              </div>
+            </div>
+          </div>
+  
+      </div>
+    </div>
+  </div>
