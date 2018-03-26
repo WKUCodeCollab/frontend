@@ -11,19 +11,26 @@
     </div>
 
     <div class="col-8">
-        <div class="card mt-5 form-custom">
-          <div class="card-body">
-            <div class="card-text form-group">
-              <!-- email input -->
-              <input type="email" class="form-control form-custom" [(ngModel)]="user.email" id="email" placeholder="Email">
-              <!-- password input -->
-              <input type="password" class="form-control mt-3 form-custom" [(ngModel)]="user.password" id="password" placeholder="Password">
-              <!-- submit form -->
+      <div class="card mt-5 form-custom">
+        <div class="card-body">
+
+          <!-- login form -->
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm"> 
+            <div class="card-text">
+              <div class="form-group">
+                <!-- email input -->
+                <input type="email" class="form-control form-custom" [(ngModel)]="model.email" #email="ngModel" id=email placeholder="Email">
+                <!-- password input -->
+                <input type="password" class="form-control mt-3 form-custom" [(ngModel)]="model.password" #password="ngModel" id=password placeholder="Password">
+              </div>
+              <!-- submit button -->
               <button type="submit" class="btn btn-lg btn-block mt-3 btn-custom">Submit</button>
             </div>
-          </div>
-        </div>
+          </form>
 
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
