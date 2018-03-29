@@ -11,6 +11,11 @@ import { RegisterComponent } from './register/register.component';
 import { AuthenticateService } from './auth/authenticate.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
+import { CodeRoomComponent } from './code-room/code-room.component';
+import { ChatService } from './socket/chat.service';
+import { WebsocketService } from './socket/websocket.service';
+import { ChatComponent } from './chat/chat.component';
+
 
 
 @NgModule({
@@ -19,7 +24,9 @@ import { AuthGuard } from './auth/auth.guard';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    CodeRoomComponent,
+    ChatComponent
   ],
   imports: [
     AppRoutingModule,
@@ -27,7 +34,7 @@ import { AuthGuard } from './auth/auth.guard';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticateService, AuthGuard],
+  providers: [AuthenticateService, AuthGuard, WebsocketService, ChatService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
