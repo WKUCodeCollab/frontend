@@ -1,10 +1,38 @@
-<div>
-  <ul *ngFor="let message of this.messages" class="list-group">
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      {{message}}
-      <span class="badge badge-secondary badge-pill">User</span>
-    </li>
-  </ul>
-</div>
-
-<input [(ngModel)]="this.message"  /><button (click)="sendMessage()">Send</button>
+<div class="main-section open-more">
+    <div class="row border-chat">
+      <div class="col-md-12 col-sm-12 col-xs-12 first-section">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-6 left-first-section">
+            <p>Chat</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row border-chat">
+      <div class="col-md-12 col-sm-12 col-xs-12 second-section">
+        <div class="chat-section">
+          <ul *ngFor="let message of this.messages">
+            <li>
+              <div class="right-chat">
+                <p>{{message}}
+                </p>
+              </div>
+            </li>
+            <li>
+                <div class="left-chat">
+                  <p>Example response...
+                  </p>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row border-chat">
+      <div class="col-md-12 col-sm-12 col-xs-12 third-section" style="background-color:#292E1E">
+        <div class="text-bar">
+          <input [(ngModel)]="this.message" type="text" placeholder="Write message"><a style="background-color:#292E1E"><i class="fa fa-arrow-right" aria-hidden="true" (click)="sendMessage()"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>

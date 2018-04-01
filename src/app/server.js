@@ -1,3 +1,5 @@
+// Code altered from: https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
+
 let app = require('express')();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);

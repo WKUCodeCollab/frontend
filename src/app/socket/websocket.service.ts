@@ -1,3 +1,5 @@
+// Code altered from: https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
+
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';

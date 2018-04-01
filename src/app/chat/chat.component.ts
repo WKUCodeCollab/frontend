@@ -25,4 +25,6 @@ export class ChatComponent implements OnInit {
     this.message = '';
   }
 
+  
+
 }

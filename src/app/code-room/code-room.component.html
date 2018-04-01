@@ -1,13 +1,42 @@
-<div class="container">
+<div class="container-fluid">
   
   <div class="row">
-    <div class="col-8">
-      <!-- Code editor here -->
+    <div class="col-8 mt-3">
+      <app-code-editor></app-code-editor>
     </div>
 
-    <div class="col-4">
-      <app-chat></app-chat>
+    <div class="col-4 mt-3">
+
+      <div class="row">
+        <div class="col-8">
+          <app-chat></app-chat>
+        </div>
+        <div class="col-4">
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active">Active item</button>
+            <button type="button" class="list-group-item list-group-item-action">Item</button>
+            <button type="button" class="list-group-item list-group-item-action disabled">Disabled item</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary|secondary|success|danger|warning|info|light|dark|link">Run</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 h-100">
+          <div class="form-group">
+            <label for=""></label>
+            <textarea class="form-control" name="" id="" rows="15%" style="background-color:#292E1E; color:#fff" placeholder=">"></textarea>
+          </div>
+        </div>
+      </div>
+
     </div>
+
   </div>
 
 </div>
