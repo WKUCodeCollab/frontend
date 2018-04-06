@@ -2,7 +2,7 @@
 
 .main-section{
   width: 100%;
-
+  height: 100%;
 }
 .first-section:hover{
   cursor: pointer;

@@ -8,7 +8,6 @@ import { ChatService } from '../socket/chat.service';
 })
 export class ChatComponent implements OnInit {
   messages = [];
-  connection;
   message;
 
   constructor(private chat:ChatService) { }
