@@ -81,8 +81,12 @@ export class WebsocketService {
             console.log("changes...");
             this.socket.emit('editorChange', data);
           }
+          else if (data.hasOwnProperty("codeToRun")) {
+            console.log("sending code to server: " + JSON.stringify(data));
+            this.socket.emit('runCode', data);
+          }
           else {
-            console.log("refresh " + data );
+            console.log("refresh: " + data );
             this.socket.emit('refreshEditor', data);
           }
         },

@@ -4,6 +4,9 @@ let app = require('express')();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
 
+const fs = require('fs');
+const shell = require('shelljs');
+
 // starting text for the code editor
 var body = "public class HelloWorld {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello, World\");\n\t}\n}";
 
@@ -40,6 +43,17 @@ io.sockets.on('connection', (socket) => {
         if (changesObj.origin == '+input' || changesObj.origin == 'paste' || changesObj.origin == '+delete'){
             socket.broadcast.emit('editorChange', changesObj);
         }
+    });
+
+    //Receive runCode signal and obj with editor text
+    //Create text file and call docker script
+    socket.on('runCode', (code) => {
+        console.log("Code to run: " + code.codeToRun);
+        fs.writeFile('./run-code/Main.java', code.codeToRun, function (err) {
+            if (err) throw err;
+            console.log('Saved!');
+        });
+        //shell.exec('./run-code/test-script.sh');
     });
 });
 

@@ -1,22 +1,32 @@
-// use this service to hook up to the backend for user login and registration
-// get data from forms and send to express api
 import { Injectable } from '@angular/core';
-//import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from'rxjs/Observable';
+import { HttpClient } from'@angular/common/http';
+
+import { UserLogin } from './user-login';
+import { UserRegister } from './user-register';
 
 @Injectable()
 export class AuthenticateService {
+  private isAuthenticated: boolean = false;
 
-  //private API = 'path/to/api'; 
+  constructor(private http: HttpClient) { }
 
-  constructor(
-    //private http: HttpClient
-  ) { }
-
-  login(email: string, password: string) {
-    //call API function 
+  login(loginInfo: UserLogin) {
+    return this.http.post<any>('http://45.55.196.206:8000/user', loginInfo)
+    .map(res => res);
   }
-  
+
+  register(registerInfo: UserLogin) {
+    return this.http.post<any>('http://45.55.196.206:8000/', registerInfo)
+    .map(res => res);
+  }
+
+  setIsAuthenticated(bool: boolean) {
+    this.isAuthenticated = bool;
+  }
+
   get isLoggedIn() {
+    //return this.isAuthenticated;
     return true;
   }
 }

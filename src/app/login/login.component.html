@@ -15,13 +15,18 @@
         <div class="card-body">
 
           <!-- login form -->
-          <form (ngSubmit)="onSubmit()" #loginForm="ngForm"> 
+          <form #loginForm="ngForm" (ngSubmit)="onFormSubmit(loginForm)"> 
             <div class="card-text">
               <div class="form-group">
                 <!-- email input -->
-                <input type="email" class="form-control form-custom" [(ngModel)]="model.email" #email="ngModel" id=email placeholder="Email">
+                <input name="email" [(ngModel)]="user.email" email #email="ngModel" class="form-control mt-3 form-custom" placeholder="Email">
+                <div *ngIf="email.errors && loginForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'"> 
+                  <div *ngIf="email.errors"> 
+                    Email is not valid.
+                  </div>	
+                </div>
                 <!-- password input -->
-                <input type="password" class="form-control mt-3 form-custom" [(ngModel)]="model.password" #password="ngModel" id=password placeholder="Password">
+                <input type="password" name="password" [(ngModel)]="user.password" class="form-control mt-3 form-custom" placeholder="Password">
               </div>
               <!-- submit button -->
               <button type="submit" class="btn btn-lg btn-block mt-3 btn-custom">Submit</button>
