@@ -25,4 +25,8 @@ export class EditorService {
      this.editorSubject.next(newBody);
    }
 
+   sendToOpenJDK(codeObj){
+    this.editorSubject.next(codeObj);
+   }
+
 }

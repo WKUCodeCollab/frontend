@@ -1,4 +1,4 @@
-export class User {
+export class UserRegister {
     fName: string;
     lName: string;
     email: string;

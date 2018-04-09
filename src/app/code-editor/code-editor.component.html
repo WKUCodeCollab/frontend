@@ -1,4 +1,8 @@
-<codemirror #editor [(ngModel)]="code"
-[config]="config"
-class="CodeMirror">
-</codemirror>
+<div class="container h-100">
+    <codemirror #editor [(ngModel)]="code"
+    [config]="config">
+    </codemirror>
+    <div class="row">
+        <button (click)="sendToOpenJDK()" type="submit" class="btn btn-primary|secondary|success|danger|warning|info|light|dark|link">Run</button>
+    </div>
+</div>

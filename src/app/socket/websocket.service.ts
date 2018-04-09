@@ -14,7 +14,7 @@ export class WebsocketService {
 
   constructor() {
     // Need to define the api path in the environment files
-    this.socket = io('http://localhost:5000');
+    this.socket = io('http://45.55.196.206:5000');
    }
 
   connectToChat(): Rx.Subject<MessageEvent> {
@@ -81,8 +81,12 @@ export class WebsocketService {
             console.log("changes...");
             this.socket.emit('editorChange', data);
           }
+          else if (data.hasOwnProperty("codeToRun")) {
+            console.log("sending code to server: " + JSON.stringify(data));
+            this.socket.emit('runCode', data);
+          }
           else {
-            console.log("refresh " + data );
+            console.log("refresh: " + data );
             this.socket.emit('refreshEditor', data);
           }
         },

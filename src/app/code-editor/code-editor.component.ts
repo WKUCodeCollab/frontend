@@ -57,6 +57,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
     });
   }
 
-
+  sendToOpenJDK() {
+    this.editorService.sendToOpenJDK({codeToRun: this.code });
+  }
 
 }

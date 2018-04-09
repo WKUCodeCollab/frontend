@@ -11,22 +11,34 @@
       </div>
   
       <div class="col-8">
-          <div class="card mt-5 form-custom">
-            <div class="card-body">
-              <div class="card-text form-group">
-                <!-- name inputs -->
-                <input class="form-control form-custom" [(ngModel)]="user.fName" id = "firstName" placeHolder="First Name">
-                <input class="form-control form-custom mt-3" [(ngModel)]="user.lName" id = "lastName" placeHolder="Last Name">
-                <!-- email input -->
-                <input type="email" class="form-control form-custom mt-3" [(ngModel)]="user.email" id="email" placeholder="Email">
-                <!-- password input -->
-                <input type="password" class="form-control mt-3 form-custom" [(ngModel)]="user.password" id="password" placeholder="Password">
-                <!-- submit form -->
+        <div class="card mt-5 form-custom">
+          <div class="card-body">
+  
+            <!-- login form -->
+            <form #registerForm="ngForm" (ngSubmit)="onFormSubmit(registerForm)"> 
+              <div class="card-text">
+                <div class="form-group">
+                  <!-- first name input -->
+                  <input name="fName" [(ngModel)]="user.fName" class="form-control mt-3 form-custom" placeholder="First Name">
+                  <!-- last name input -->
+                  <input name="lName" [(ngModel)]="user.lName" class="form-control mt-3 form-custom" placeholder="Last Name">
+                  <!-- email input -->
+                  <input name="email" [(ngModel)]="user.email" email #email="ngModel" class="form-control mt-3 form-custom" placeholder="Email">
+                  <div *ngIf="email.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'"> 
+                    <div *ngIf="email.errors"> 
+                      Email is not valid.
+                    </div>	
+                  </div>
+                  <!-- password input -->
+                  <input type="password" name="password" [(ngModel)]="user.password" class="form-control mt-3 form-custom" placeholder="Password">
+                </div>
+                <!-- submit button -->
                 <button type="submit" class="btn btn-lg btn-block mt-3 btn-custom">Submit</button>
               </div>
-            </div>
-          </div>
+            </form>
   
+          </div>
+        </div>
       </div>
     </div>
   </div>
