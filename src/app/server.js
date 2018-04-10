@@ -8,7 +8,7 @@ const fs = require('fs');
 const shell = require('shelljs');
 
 // starting text for the code editor
-var body = "public class HelloWorld {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello, World\");\n\t}\n}";
+var body = "public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello, World\");\n\t}\n}";
 
 io.sockets.on('connection', (socket) => {
 
@@ -34,7 +34,7 @@ io.sockets.on('connection', (socket) => {
     // using `io.emit()`
     socket.on('message', (message) => {
         console.log("Message Received: " + message);
-        io.emit('message', {type:'new-message', text: message});    
+        io.emit('message', {type:'new-message', text: message});
     });
 
     // Receive editorChange signal and obj with changes, re-emit to all except sender
@@ -50,10 +50,13 @@ io.sockets.on('connection', (socket) => {
     socket.on('runCode', (code) => {
         console.log("Code to run: " + code.codeToRun);
         fs.writeFile('./run-code/Main.java', code.codeToRun, function (err) {
-            if (err) throw err;
-            console.log('Saved!');
+		if (err) throw err;
+            	console.log('Saved!');
+        	shell.exec('docker exec JDK /bin/sh -c "javac usr/src/dockerTest/Main.java"');
+       		shell.exec('docker exec JDK /bin/sh -c "cd usr/src/dockerTest; java Main > output.txt"');
+        	console.log('executed');
+
         });
-        //shell.exec('./run-code/test-script.sh');
     });
 });
 
