@@ -34,8 +34,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
       if (data.hasOwnProperty("from")) {
         this.editor.instance.replaceRange(data.text, data.from, data.to);
       }
-      else {
-        console.log("setvalue" + data)    
+      else if (data.hasOwnProperty("body")) {
+        console.log("setvalue" + JSON.stringify(data));    
         this.editor.instance.setValue(data.body);
       }
     });

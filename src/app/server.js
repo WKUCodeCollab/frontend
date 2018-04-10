@@ -40,7 +40,7 @@ io.sockets.on('connection', (socket) => {
     // Receive editorChange signal and obj with changes, re-emit to all except sender
     socket.on('editorChange', (changesObj) => {
         console.log("changes recieved: " + changesObj);
-        if (changesObj.origin == '+input' || changesObj.origin == 'paste' || changesObj.origin == '+delete'){
+        if (changesObj.origin == '+input' || changesObj.origin == 'paste' || changesObj.origin == '+delete' || changesObj.origin == 'undo'){
             socket.broadcast.emit('editorChange', changesObj);
         }
     });
@@ -54,8 +54,13 @@ io.sockets.on('connection', (socket) => {
             	console.log('Saved!');
         	shell.exec('docker exec JDK /bin/sh -c "javac usr/src/dockerTest/Main.java"');
        		shell.exec('docker exec JDK /bin/sh -c "cd usr/src/dockerTest; java Main > output.txt"');
-        	console.log('executed');
-
+            console.log('executed');
+            
+            fs.readFile('./run-code/output.txt', (err, data) => {
+                if (err) throw err;
+                console.log(data + "");
+                io.emit('consoleOutput', {output: data+""} );
+            });
         });
     });
 });

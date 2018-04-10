@@ -67,6 +67,13 @@ export class WebsocketService {
         console.log("Recieved refreshes" + data);
         observer.next(data);
       })
+
+      //If consoleOutput received, send data back to console view
+      this.socket.on('consoleOutput', (data) => {
+        console.log("Received output: " + data.output);
+        observer.next(data);
+      })
+
       return () => {
         this.socket.disconnect();
       }
