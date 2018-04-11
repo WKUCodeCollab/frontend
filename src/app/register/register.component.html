@@ -19,9 +19,9 @@
               <div class="card-text">
                 <div class="form-group">
                   <!-- first name input -->
-                  <input name="fName" [(ngModel)]="user.fName" class="form-control mt-3 form-custom" placeholder="First Name">
+                  <input name="firstName" [(ngModel)]="user.firstName" class="form-control mt-3 form-custom" placeholder="First Name">
                   <!-- last name input -->
-                  <input name="lName" [(ngModel)]="user.lName" class="form-control mt-3 form-custom" placeholder="Last Name">
+                  <input name="lastName" [(ngModel)]="user.lastName" class="form-control mt-3 form-custom" placeholder="Last Name">
                   <!-- email input -->
                   <input name="email" [(ngModel)]="user.email" email #email="ngModel" class="form-control mt-3 form-custom" placeholder="Email">
                   <div *ngIf="email.errors && registerForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'"> 

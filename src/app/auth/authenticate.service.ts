@@ -16,8 +16,8 @@ export class AuthenticateService {
     .map(res => res);
   }
 
-  register(registerInfo: UserLogin) {
-    return this.http.post<any>('http://45.55.196.206:8000/', registerInfo)
+  register(registerInfo: UserRegister) {
+    return this.http.post<any>('http://localhost:3000/users', registerInfo)
     .map(res => res);
   }
 

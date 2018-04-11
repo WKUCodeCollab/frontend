@@ -1,6 +1,6 @@
 export class UserRegister {
-    fName: string;
-    lName: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
 }

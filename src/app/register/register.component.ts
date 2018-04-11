@@ -29,14 +29,14 @@ export class RegisterComponent implements OnInit {
     }
     this.isValidFormSubmitted = true;
     this.user = form.value;
-    console.log("First: " + this.user.fName);
-    console.log("Last: " + this.user.lName);
+    console.log("First: " + this.user.firstName);
+    console.log("Last: " + this.user.lastName);
     console.log("Email: " + this.user.email);
     console.log("Password: " + this.user.password);
 
     this.authService.register(this.user).subscribe(
       registered => {
-        this.authService.setIsAuthenticated = registered;
+        //this.authService.setIsAuthenticated = registered;
         console.log(registered);
       },
       err => console.error('Observer got an error: ' + err),
