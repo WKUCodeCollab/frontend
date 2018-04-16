@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   onFormSubmit(form: NgForm) {
     this.isValidFormSubmitted = false;
-    if (form.invalid) {
+    if (form.invalid || this.user.password.length === 0) {
        return;
     }
     this.isValidFormSubmitted = true;
