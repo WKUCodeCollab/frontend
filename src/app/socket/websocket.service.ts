@@ -11,26 +11,31 @@ export class WebsocketService {
 
   // Our socket connection
   private socket;
+  private privateChannel;
 
   constructor() {
-    // Need to define the api path in the environment files
-    this.socket = io('http://localhost:3000');
+    // ---Need to define the api path in the environment files
+    this.socket = io('http://127.0.0.1:3000');
+    // ---Need to replace groupID with actual group id
+    this.privateChannel = "groupID";
    }
 
   connectToChat(): Rx.Subject<MessageEvent> {
-    // Need to define the api path in the environment files
-    //this.socket = io('http://localhost:5000');
-
     // We define our observable which will observe any incoming messages
     // from our socket.io server.
     let observable = new Observable(observer => {
-        this.socket.on('message', (data) => {
-          console.log("Received message from Websocket Server")
-          observer.next(data);
-        })
-        return () => {
-          this.socket.disconnect();
-        }
+      this.socket.on('connect', (data) => {
+          // Connected, let's sign-up for to receive messages for this room
+          this.socket.emit('room', this.privateChannel);
+      })
+
+      this.socket.on('message', (data) => {
+        console.log("Received message from Websocket Server")
+        observer.next(data);
+      })
+      return () => {
+        this.socket.disconnect();
+      }
     });
     
     // We define our Observer which will listen to messages
@@ -49,13 +54,9 @@ export class WebsocketService {
 
 
   connectToEditor(): Rx.Subject<MessageEvent> {
-    // Need to define the api path in the environment files
-    //this.socket = io('http://localhost:5000');
-
     // We define our observable which will observe any incoming messages
     // from our socket.io server.
-    let observable = new Observable(observer => {
-      
+    let observable = new Observable(observer => {      
       //If editorChange received, send changes to editor service
       this.socket.on('editorChange', (data) => {
         console.log("Received changes from Websocket Server" + JSON.stringify(data));

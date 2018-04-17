@@ -9,8 +9,8 @@ import { AuthenticateService } from './authenticate.service';
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private auth: AuthenticateService,
-    private router: Router
+    private router: Router,
+    private auth: AuthenticateService
   ) {}
 
 
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       // handle any redirects if a user isn't authenticated
-      if (!this.auth.isLoggedIn) {
+      if (!this.auth.isLoggedIn()) {
         // redirect the user
         this.router.navigate(['/login']);
         return false;

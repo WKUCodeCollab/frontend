@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
 
   onFormSubmit(form: NgForm) {
     this.isValidFormSubmitted = false;
-    if (form.invalid || this.user.password.length === 0) {
+    if (form.invalid) {
+      this.user = new UserLogin();	 
+      form.resetForm();
        return;
     }
     this.isValidFormSubmitted = true;
@@ -35,16 +37,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.user).subscribe(
       loggedIn => {
-        this.authService.setIsAuthenticated = loggedIn;
         console.log(loggedIn);
+        this.router.navigate(['/home']);
       },
       err => console.error('Observer got an error: ' + err),
       () => console.log('Observer got a complete notification')
     );
-
-    this.user = new UserLogin();	 
-    form.resetForm();
-    this.router.navigate(['/home']);
  }
 
 
