@@ -11,13 +11,10 @@ export class WebsocketService {
 
   // Our socket connection
   private socket;
-  private privateChannel;
 
   constructor() {
     // ---Need to define the api path in the environment files
     this.socket = io('http://127.0.0.1:3000');
-    // ---Need to replace groupID with actual group id
-    this.privateChannel = "groupID";
    }
 
   connectToChat(): Rx.Subject<MessageEvent> {
@@ -26,7 +23,7 @@ export class WebsocketService {
     let observable = new Observable(observer => {
       this.socket.on('connect', (data) => {
           // Connected, let's sign-up for to receive messages for this room
-          this.socket.emit('room', this.privateChannel);
+          this.socket.emit('room', localStorage.getItem('groupID'));
       })
 
       this.socket.on('message', (data) => {

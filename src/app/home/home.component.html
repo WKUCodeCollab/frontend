@@ -1,5 +1,21 @@
 <div class="container">
-  
-  <button type="button" class="btn" (click)="this.enterRoom()">Enter Code Room</button>
-  
+  <div class="row m-4">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for=""></label>
+        <input type="text" name="roomName" [(ngModel)]="newRoom.roomName" #roomName="ngModel" class="form-control" placeholder="Enter room name" >
+        <button type="button" class="btn" [disabled]="!newRoom.roomName" (click)="this.enterNewRoom(roomName)">Create Room</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let room of this.allRooms">
+        {{room.groupName}}
+        <button type="button" class="btn ml-2" (click)="this.enterOpenRoom(room.id)">Join Code Room</button>
+      </li>
+    </ul>
+  </div>
+
 </div>

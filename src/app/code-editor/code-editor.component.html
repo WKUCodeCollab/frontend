@@ -2,7 +2,12 @@
     <codemirror #editor [(ngModel)]="code"
     [config]="config">
     </codemirror>
-    <div class="row">
-        <button (click)="sendToOpenJDK()" type="submit" class="btn btn-primary|secondary|success|danger|warning|info|light|dark|link">Run</button>
+    <div class="row mt-4">
+        <div class="col-10">
+            <input type="text" name="" id="" class="form-control" placeholder="Pre-enter input here" aria-describedby="helpId">
+        </div>
+        <div class="col-2">
+            <button (click)="sendToOpenJDK()" type="submit" class="btn w-100">Run</button>
+        </div>
     </div>
 </div>

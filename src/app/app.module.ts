@@ -20,6 +20,7 @@ import { WebsocketService } from './socket/websocket.service';
 import { ChatComponent } from './chat/chat.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
 import { EditorService } from './socket/editor.service';
+import { HomeService } from './home/home.service';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { EditorService } from './socket/editor.service';
     AceEditorModule,
     CodemirrorModule
   ],
-  providers: [AuthenticateService, AuthGuard, WebsocketService, ChatService, EditorService ],
+  providers: [AuthenticateService, AuthGuard, WebsocketService, ChatService, EditorService, HomeService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,6 +7,7 @@ import { AuthenticateService } from './authenticate.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  private loggedIn: boolean;
 
   constructor(
     private router: Router,
@@ -17,8 +18,19 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
+      this.auth.isLoggedIn().subscribe(
+        data => {
+          console.log("Guard: " + data.success);
+          this.loggedIn = data.success;
+        },
+        err => console.error('Observer got an error: ' + err),
+        () => console.log('Observer got a complete notification')
+      );
+
+
       // handle any redirects if a user isn't authenticated
-      if (!this.auth.isLoggedIn()) {
+      if (this.loggedIn == false) {
         // redirect the user
         this.router.navigate(['/login']);
         return false;
