@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
 
     this.user = new UserRegister();	 
     form.resetForm();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
  }
 
 

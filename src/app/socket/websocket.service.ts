@@ -14,7 +14,7 @@ export class WebsocketService {
 
   constructor() {
     // ---Need to define the api path in the environment files
-    this.socket = io('http://127.0.0.1:3000');
+    this.socket = io('http://45.55.196.206:3000');
    }
 
   connectToChat(): Rx.Subject<MessageEvent> {

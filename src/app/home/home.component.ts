@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit {
     this.homeService.getAllRooms().subscribe( res => {
       this.allRooms = res.groups;
     });
+
+    if (localStorage.getItem('groupID') !== null) {
+      localStorage.removeItem('groupID');
+    }
   }
 
   enterNewRoom(roomName: string){

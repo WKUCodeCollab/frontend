@@ -12,7 +12,7 @@ export class AuthenticateService {
   constructor(private http: HttpClient) { }
 
   login(loginInfo: UserLogin) {
-    return this.http.post<any>('http://127.0.0.1:3000/auth/login', loginInfo)
+    return this.http.post<any>('http://45.55.196.206:3000/auth/login', loginInfo)
     .do(res => this.setSession(res))
     .shareReplay();
   }
@@ -27,13 +27,13 @@ export class AuthenticateService {
   }
 
   register(registerInfo: UserRegister) {
-    return this.http.post<any>('http://127.0.0.1:3000/auth/register', registerInfo)
+    return this.http.post<any>('http://45.55.196.206:3000/auth/register', registerInfo)
     .map(res => res);
   }
 
   public isLoggedIn() {
     console.log(localStorage.getItem("id_token"));
-    return this.http.post<any>('http://127.0.0.1:3000/auth/verify', {'token': localStorage.getItem("id_token")})
+    return this.http.post<any>('http://45.55.196.206:3000/auth/verify', {'token': localStorage.getItem("id_token")})
     .map(res => {
       return res
     });
@@ -46,7 +46,7 @@ export class AuthenticateService {
 
   getUser(){
     console.log(localStorage.getItem("id_token"));
-    return this.http.post<any>('http://127.0.0.1:3000/auth/verify', {'token': localStorage.getItem("id_token")})
+    return this.http.post<any>('http://45.55.196.206:3000/auth/verify', {'token': localStorage.getItem("id_token")})
     .map(res => {
       return res
     });

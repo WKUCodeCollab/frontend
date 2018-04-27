@@ -16,12 +16,12 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   createRoom(roomInfo: CreateRoomInfo) {
-    return this.http.post<any>('http://127.0.0.1:3000/api/group', roomInfo, httpOptions)
+    return this.http.post<any>('http://45.55.196.206:3000/api/group', roomInfo, httpOptions)
     .map(res => res);
   }
 
   getAllRooms() {
-    return this.http.get<any>('http://127.0.0.1:3000/api/group', httpOptions)
+    return this.http.get<any>('http://45.55.196.206:3000/api/group', httpOptions)
     .map(res => res);
   }
 
