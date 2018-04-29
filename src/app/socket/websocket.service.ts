@@ -14,7 +14,7 @@ export class WebsocketService {
 
   constructor() {
     // ---Need to define the api path in the environment files
-    this.socket = io('http://45.55.196.206:3000');
+    this.socket = io('http://45.55.196.206:3000', {'forceNew': true});
    }
 
   connectToChat(): Rx.Subject<MessageEvent> {
@@ -24,15 +24,15 @@ export class WebsocketService {
       this.socket.on('connect', (data) => {
           // Connected, let's sign-up for to receive messages for this room
           this.socket.emit('room', localStorage.getItem('groupID'));
-      })
+      });
 
       this.socket.on('message', (data) => {
-        console.log("Received message from Websocket Server")
+        console.log("Received message from Websocket Server");
         observer.next(data);
-      })
+      });
       return () => {
         this.socket.disconnect();
-      }
+      };
     });
     
     // We define our Observer which will listen to messages
@@ -58,23 +58,23 @@ export class WebsocketService {
       this.socket.on('editorChange', (data) => {
         console.log("Received changes from Websocket Server" + JSON.stringify(data));
         observer.next(data);
-      })
+      });
 
       //If refreshEditor received, send refreshes to editor service
       this.socket.on('refreshEditor', (data) => {
         console.log("Recieved refreshes" + data);
         observer.next(data);
-      })
+      });
 
       //If consoleOutput received, send data back to console view
       this.socket.on('consoleOutput', (data) => {
         console.log("Received output: " + data.output);
         observer.next(data);
-      })
+      });
 
       return () => {
         this.socket.disconnect();
-      }
+      };
     });
     
     // We define our Observer which will listen to messages

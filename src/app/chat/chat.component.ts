@@ -6,7 +6,7 @@ import { ChatService } from '../socket/chat.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   messages = [];
   message;
 
@@ -24,6 +24,9 @@ export class ChatComponent implements OnInit {
     this.message = '';
   }
 
+  ngOnDestroy() {
+    this.chat.messages.unsubscribe();
+  }
   
 
 }

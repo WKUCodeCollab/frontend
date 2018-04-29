@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewChild, OnDestroy} from '@angular/core';
 import 'codemirror';
 import 'codemirror/mode/clike/clike';
 import 'codemirror/lib/codemirror.css';
@@ -10,7 +10,7 @@ import { EditorService } from '../socket/editor.service';
   templateUrl: './code-editor.component.html',
   styleUrls: ['./code-editor.component.css']
 })
-export class CodeEditorComponent implements OnInit, AfterViewInit {
+export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('editor') editor;
   code: string;
   text: any;
@@ -59,6 +59,10 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
 
   sendToOpenJDK() {
     this.editorService.sendToOpenJDK({codeToRun: this.code });
+  }
+
+  ngOnDestroy() {
+    this.editorService.editorSubject.unsubscribe();
   }
 
 }
