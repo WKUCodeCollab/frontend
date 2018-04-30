@@ -25,6 +25,7 @@ export class EditorService {
      this.editorSubject.next(newBody);
    }
 
+   //send codeobject with possible input field to run to websocket service
    sendToOpenJDK(codeObj){
     this.editorSubject.next(codeObj);
    }

@@ -4,7 +4,7 @@
     </codemirror>
     <div class="row mt-4">
         <div class="col-10">
-            <input type="text" name="" id="" class="form-control" placeholder="Pre-enter input here" aria-describedby="helpId">
+            <input type="text" name="input" [(ngModel)]="codeObj.codeInput" #codeInput="ngModel" class="form-control" placeholder="Seperate inputs by a space" >
         </div>
         <div class="col-2">
             <button (click)="sendToOpenJDK()" type="submit" class="btn w-100">Run</button>

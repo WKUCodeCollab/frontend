@@ -4,6 +4,7 @@ import 'codemirror/mode/clike/clike';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/lib/codemirror.js';
 import { EditorService } from '../socket/editor.service';
+import { CodeInfo } from './codeInfo';
 
 @Component({
   selector: 'app-code-editor',
@@ -16,6 +17,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   text: any;
   from: any;
   to: any;
+  codeObj = new CodeInfo();
 
 
   constructor(private editorService:EditorService) {
@@ -58,7 +60,14 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   sendToOpenJDK() {
-    this.editorService.sendToOpenJDK({codeToRun: this.code });
+    if (!this.codeObj.codeInput){
+      this.editorService.sendToOpenJDK({ codeToRun: this.code });
+    }
+    else {
+      this.codeObj.codeToRun = this.code;
+      console.log(this.codeObj.codeInput);
+      this.editorService.sendToOpenJDK(this.codeObj);
+    }
   }
 
   ngOnDestroy() {
