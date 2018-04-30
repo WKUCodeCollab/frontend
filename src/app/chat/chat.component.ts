@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService } from '../socket/chat.service';
+import { Message } from './message';
 
 @Component({
   selector: 'app-chat',
@@ -7,14 +8,14 @@ import { ChatService } from '../socket/chat.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  messages = [];
+  messages: Message[] = [];
   message;
 
   constructor(private chat:ChatService) { }
 
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
-      this.messages.push(msg.text.slice(1, -1));
+      this.messages.push({firstName: msg.name, text: msg.text.slice(1, -1)});
       console.log(msg);
     })
   }

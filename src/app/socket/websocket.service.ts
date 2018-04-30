@@ -23,7 +23,7 @@ export class WebsocketService {
     let observable = new Observable(observer => {
       this.socket.on('connect', (data) => {
           // Connected, let's sign-up for to receive messages for this room
-          this.socket.emit('room', localStorage.getItem('groupID'));
+          this.socket.emit('room', { groupID: localStorage.getItem('groupID'), userID: localStorage.getItem('userID') });
       });
 
       this.socket.on('message', (data) => {

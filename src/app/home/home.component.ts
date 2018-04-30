@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
         console.log(res.id);
         this.newRoom.roomName = roomName;
         this.newRoom.userId = res.id;
+        localStorage.setItem('userID', res.id);
       },
       err => console.error('Observer got an error: ' + err),
       () => console.log('Observer got a complete notification')
@@ -52,6 +53,14 @@ export class HomeComponent implements OnInit {
   }
 
   enterOpenRoom(roomID: any){
+    this.authService.getUser().subscribe( res => {
+      console.log(res.id);
+      localStorage.setItem('userID', res.id);
+    },
+    err => console.error('Observer got an error: ' + err),
+    () => console.log('Observer got a complete notification')
+    );
+
     localStorage.setItem('groupID', roomID);
     this.router.navigate(['/coderoom']);
   }

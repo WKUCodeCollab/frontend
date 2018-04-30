@@ -13,16 +13,12 @@
         <div class="chat-section">
           <ul *ngFor="let message of this.messages">
             <li>
-              <div class="right-chat">
-                <p>{{message}}
+              <div class="left-chat">
+                <p>
+                  <span class="badge pull-right">{{message.firstName}}</span>
+                  {{message.text}}
                 </p>
               </div>
-            </li>
-            <li>
-                <div class="left-chat">
-                  <p>Example response...
-                  </p>
-                </div>
             </li>
           </ul>
         </div>
