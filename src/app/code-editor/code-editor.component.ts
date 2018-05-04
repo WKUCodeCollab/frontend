@@ -23,6 +23,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private editorService:EditorService) {
   }
 
+  //configuration for codemirror editor
   config = {
     mode: 'text/x-java',
     lineNumbers: true,
@@ -30,7 +31,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    //recieves data from the editor service when changes or updates occur
     this.editorService.editorSubject.subscribe(data => {
       console.log("Subscription: " + JSON.stringify(data));
       if (data.hasOwnProperty("from")) {
@@ -52,6 +53,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     let es = this.editorService;
     let newBody = this;
 
+    //send changes to the editor service
     this.editor.instance.on('change', function (i, changesObj) {
       console.log(changesObj);
       es.sendChanges(changesObj);
@@ -59,7 +61,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  //send code body to the editor service to run the code
   sendToOpenJDK() {
+    //checks if the user included inputs for the java program
     if (!this.codeObj.codeInput){
       this.editorService.sendToOpenJDK({ codeToRun: this.code });
     }

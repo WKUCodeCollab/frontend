@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
+      //subscribes to the authentication service to check if the user is still logged
       this.auth.isLoggedIn().subscribe(
         data => {
           console.log("Guard: " + data.success);

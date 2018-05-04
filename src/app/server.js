@@ -1,4 +1,5 @@
 //Chat code altered from: https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
+//This file is an old test version. Current version has been moved to the backend repository.
 
 let app = require('express')();
 let http = require('http').Server(app);

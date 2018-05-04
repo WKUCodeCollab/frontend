@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    //subscribes to the home service to retrieve all coding rooms
     this.homeService.getAllRooms().subscribe( res => {
       this.allRooms = res.groups;
     });
@@ -32,6 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   enterNewRoom(roomName: string){
+    //retrieves the user id to use in the room creation
     this.authService.getUser().subscribe( res => {
         console.log(res.id);
         this.newRoom.roomName = roomName;
@@ -42,6 +45,7 @@ export class HomeComponent implements OnInit {
       () => console.log('Observer got a complete notification')
     );
 
+    //sends the room info to the server and returns the groupID for the room
     this.homeService.createRoom(this.newRoom).subscribe( res => {
       console.log("groupID:" + res.groupID);
       localStorage.setItem('groupID', res.groupID);
@@ -53,6 +57,7 @@ export class HomeComponent implements OnInit {
   }
 
   enterOpenRoom(roomID: any){
+    //retrieves the user id to use in the room creation
     this.authService.getUser().subscribe( res => {
       console.log(res.id);
       localStorage.setItem('userID', res.id);

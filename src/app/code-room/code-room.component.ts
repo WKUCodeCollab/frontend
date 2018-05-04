@@ -15,6 +15,8 @@ export class CodeRoomComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    //subscribes to the editor service to recieve output/error msg from running the code in the editor
     this.editorService.editorSubject.subscribe(data => {
       if (data.hasOwnProperty("output")) {
         this.output = "";

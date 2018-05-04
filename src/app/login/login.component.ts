@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
+    //checks if the form is filled out
     this.isValidFormSubmitted = false;
     if (form.invalid) {
       this.user = new UserLogin();	 
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
     console.log("Email: " + this.user.email);
     console.log("Password: " + this.user.password);
 
+    //sends the authetication service the user information to login
     this.authService.login(this.user).subscribe(
       loggedIn => {
         console.log(loggedIn);

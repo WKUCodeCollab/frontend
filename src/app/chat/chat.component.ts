@@ -8,11 +8,13 @@ import { Message } from './message';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  //stores message objects recieved from server
   messages: Message[] = [];
   message;
 
   constructor(private chat:ChatService) { }
 
+  //subscribes to the chat service and recieves message objects from the server
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
       this.messages.push({firstName: msg.name, text: msg.text.slice(1, -1)});
@@ -20,6 +22,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     })
   }
 
+  //sends message objects to the chat service
   sendMessage() {
     this.chat.sendMsg(this.message);
     this.message = '';

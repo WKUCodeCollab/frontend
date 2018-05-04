@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
+    //checks if the form is valid
     this.isValidFormSubmitted = false;
     if (form.invalid) {
        return;
@@ -34,6 +35,7 @@ export class RegisterComponent implements OnInit {
     console.log("Email: " + this.user.email);
     console.log("Password: " + this.user.password);
 
+    //send the authentication service the registration info
     this.authService.register(this.user).subscribe(
       registered => {
         //this.authService.setIsAuthenticated = registered;
